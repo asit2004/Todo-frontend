@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export default function Todo() {
     const [todos, setTodos] = useState([])
     const userid = localStorage.getItem("userid")
@@ -21,7 +23,7 @@ export default function Todo() {
 
         const getTodo = async () => {
             try {
-                const result = await axios.get(`http://localhost:8080/gettodo?userid=${userid}`);
+                const result = await axios.get(`${BASE_URL}/gettodo?userid=${userid}`);
                 console.log(result.data);
                 const sortedTodos = result.data.Todo.sort((a, b) => a.completed - b.completed).reverse();
                 setTodos(sortedTodos);
@@ -41,7 +43,7 @@ export default function Todo() {
 
     const handleDelete = async (taskid) => {
         try {
-            const result = await axios.delete(`http://localhost:8080/deletetask?userid=${userid}&taskid=${taskid}`)
+            const result = await axios.delete(`${BASE_URL}/deletetask?userid=${userid}&taskid=${taskid}`)
             console.log(result.data)
             setTodos(prev => prev.filter(todo => todo._id !== taskid))
             toast.success("Task deleted succesfully")
@@ -53,7 +55,7 @@ export default function Todo() {
 
     const handleComplete = async (taskid, currentStatus) => {
         try {
-            const result = await axios.put(`http://localhost:8080/updatetask`, {
+            const result = await axios.put(`${BASE_URL}/updatetask`, {
                 userid,
                 taskid,
                 completed: !currentStatus
@@ -73,7 +75,7 @@ export default function Todo() {
 
     const handleLogout = async () => {
         try {
-            const response = await axios.post("http://localhost:8080/logout", { userid })
+            const response = await axios.post(`${BASE_URL}/logout`, { userid })
             console.log(response.data);
             localStorage.removeItem("userid")
             navigate('/signin')
@@ -91,7 +93,7 @@ export default function Todo() {
             return;
         }
         try {
-            const result = await axios.put("http://localhost:8080/edittask", {
+            const result = await axios.put(`${BASE_URL}/edittask`, {
                 userid,
                 taskid,
                 newText: editText

@@ -1,3 +1,4 @@
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react"
 import axios from "axios"
 import {ToastContainer,toast} from 'react-toastify'
@@ -12,7 +13,7 @@ export default function TodoInput({ onAdd }) {
             return
         }
         try {
-            const result = await axios.post('http://localhost:8080/addtodo', {
+            const result = await axios.post(`${BASE_URL}/addtodo`, {
                 task,
                 userid
             })
