@@ -1,7 +1,7 @@
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 import { useState } from "react"
 import axios from "axios"
-import {ToastContainer,toast} from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 
 export default function TodoInput({ onAdd }) {
     const [task, setTask] = useState('')
@@ -40,7 +40,7 @@ export default function TodoInput({ onAdd }) {
                 className="border-2 m-2 p-1 px-3 rounded-md  hover:bg-gradient-to-tl from-blue-300  hover:border-white"
                 onClick={handleAdd}
                 type="button"
-                
+
             >
                 Add
             </button>
