@@ -37,7 +37,7 @@ export default function TodoInput({ onAdd }) {
                 onChange={(e) => setTask(e.target.value)} />
 
             <button
-                className="border-2 m-2 p-1 px-3 rounded-md  hover:bg-gradient-to-tl from-blue-300   hover:border-white"
+                className="border-2 m-2 p-1 px-3 rounded-md  hover:bg-gradient-to-tl from-blue-300  hover:border-white"
                 onClick={handleAdd}
                 type="button"
                 

@@ -11,7 +11,7 @@ export default function SignupCard() {
 
     const handleSignup = async () => {
         try {
-            const result = await axios.post('http://localhost:8080/add', {
+            const result = await axios.post(`${BASE_URL}/add`, {
                 name: name,
                 email: email,
                 password: password
