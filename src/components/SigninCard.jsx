@@ -12,12 +12,12 @@ export default function SigninCard() {
 
     const handleLogin = async () => {
         try {
-            const result = await axios.post(`${BASE_URL}/signin`, {
+            const result = await axios.post(`${BASE_URL}/signin`, { 
                 email,
                 password
             })
 
-            localStorage.setItem("userid", result.data.userid)//storing userid in localstorage after succesfully signed in 
+            localStorage.setItem("userid", result.data.userid) //storing userid in localstorage after succesfully signed in 
 
             console.log("Login succesful:", result.data)
             toast.success(`Welcome back`)
